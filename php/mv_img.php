@@ -126,11 +126,11 @@ function move_img_file_article()
     }
 }
 
-function move_img_file_event()
+function move_img_file_event($nombreArchivo)
 {
     if (isset($_FILES['imagen_evento']) && $_FILES['imagen_evento']['error'] == UPLOAD_ERR_OK) {
-
-        $rutaArchivo = 'C:\\xampp\\htdocs\\SSP-PROJECT\\images\\eventos\\' . $_POST['titulo_evento'] . "_IMAGEN." . pathinfo($_FILES['imagen_evento']['name'], PATHINFO_EXTENSION);
+        
+        $rutaArchivo = 'C:\\xampp\\htdocs\\SSP-PROJECT\\images\\eventos\\' . $nombreArchivo;
         if (move_uploaded_file($_FILES['imagen_evento']['tmp_name'], $rutaArchivo)) {
             return true;
         } else {

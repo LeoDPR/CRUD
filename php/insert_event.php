@@ -13,12 +13,12 @@ $descripcion = $_POST['descripcion_evento'];
 $lugar = $_POST['lugar_evento'];
 $fecha_inicio = $_POST['fecha_inicio_evento'];
 $fecha_final = $_POST['fecha_fin_evento'];
-$img_evento_name = $_FILES['imagen_evento']['name'];
-
+$nombreArchivo = $_POST['titulo_evento'] . "." . pathinfo($_FILES['imagen_evento']['name'], PATHINFO_EXTENSION);
+$resultado = move_img_file_event($nombreArchivo);
 
 //Comienza el proceso de insersion en la tabla eventos
 $sql = "INSERT INTO eventos (nombre, descripcion, lugar, fecha_inicio, fecha_final, imagen_evento)
- VALUES('$titulo','$descripcion','$lugar','$fecha_inicio', '$fecha_final', '$img_evento_name')";
+ VALUES('$titulo','$descripcion','$lugar','$fecha_inicio', '$fecha_final', '$nombreArchivo')";
 $query = mysqli_query($con, $sql);
 if(!$query){
     $validar_insert = false;
@@ -49,7 +49,7 @@ do {
 } while (isset($_POST['autor' . $i]));
 
 //Una funcion carga la imagen que el usuario suba al CRUD y la mueve a la carpeta del proyecto del sitio web.
-$resultado = move_img_file_event();
+
 
 /* Verifica que no haya errores y redirecciona al index */
 if($validar_insert && $resultado){
