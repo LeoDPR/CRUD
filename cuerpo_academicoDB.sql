@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2023 a las 20:46:24
+-- Tiempo de generación: 30-04-2023 a las 22:57:15
 -- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -80,21 +80,22 @@ CREATE TABLE `autores` (
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `descripcion` varchar(200) NOT NULL,
-  `imagen_autor` varchar(250) NOT NULL
+  `imagen_autor` varchar(250) NOT NULL,
+  `miembro` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `autores`
 --
 
-INSERT INTO `autores` (`id_autor`, `nombre`, `apellido`, `descripcion`, `imagen_autor`) VALUES
-(1, 'Ricardo Fernando', 'Rosales Cisneros', 'A Mich le encanta afrontar desafíos. La dilatada experiencia que Mich atesora como director comercial en la industria del software ha posibilitado que la empresa goce de la posición que ostenta actual', 'ROSALES.png'),
-(2, 'Nora del Carmen', 'Osuna Millan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'OSUNA.png'),
-(3, 'Juan Antonio', 'Meza Fregoso', 'informacion', 'Juan.jpeg'),
-(7, 'Manuel', 'Castañon Puga', 'l', ''),
-(8, 'Felipe', 'Lara Rosano', '', ''),
-(9, 'Donald', 'Rodriguez', '', ''),
-(10, 'Margarita', 'Ramirez Ramirez', '', '');
+INSERT INTO `autores` (`id_autor`, `nombre`, `apellido`, `descripcion`, `imagen_autor`, `miembro`) VALUES
+(1, 'Ricardo Fernando', 'Rosales Cisneros', 'A Mich le encanta afrontar desafíos. La dilatada experiencia que Mich atesora como director comercial en la industria del software ha posibilitado que la empresa goce de la posición que ostenta actual', '', 'Si'),
+(2, 'Nora del Carmen', 'Osuna Millan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', '', 'Si'),
+(3, 'Juan Antonio', 'Meza Fregoso', 'informacion', '', 'Si'),
+(7, 'Manuel', 'Castañon Puga', 'l', '', 'No'),
+(8, 'Felipe', 'Lara Rosano', '', '', 'No'),
+(9, 'Donald', 'Rodriguez', '', '', 'No'),
+(10, 'Margarita', 'Ramirez Ramirez', '', '', 'Si');
 
 -- --------------------------------------------------------
 
@@ -162,9 +163,9 @@ CREATE TABLE `investigaciones` (
 --
 
 INSERT INTO `investigaciones` (`id_investigacion`, `clave`, `titulo`, `periodo_inicio`, `anio_inicio`, `periodo_fin`, `anio_fin`, `descripcion`, `url_descarga`) VALUES
-(5, 0, 'SIMULADOR DE PROCESOS DE GESTIÓN DE LA INNOVACIÓN COMO BASE DE CONOCIM', 2, '2016', 2, '2016', 'El presente tiene como propósito contar con una guía clara y específica que garantice la óptima operación y desarrollo de las diferentes actividades del Simulador de procesos de gestión de la innovación como base de conocimiento para la educación e investigación l Es importante señalar, que este documento está sujeto a actualización en la medida que se vayan realizando distintas versiones del software.', ''),
-(6, NULL, 'Prueba', 0, '0000', 0, '0000', 'Funcione', 'SQL Condiciones.pdf'),
-(7, NULL, 'Ley', 0, '0000', 0, '0000', 'Información', 'LIEG_abro.pdf');
+(5, 0, 'SIMULADOR DE PROCESOS DE GESTIÓN DE LA INNOVACIÓN COMO BASE DE CONOCIM', 2, 2016, 2, 2016, 'El presente tiene como propósito contar con una guía clara y específica que garantice la óptima operación y desarrollo de las diferentes actividades del Simulador de procesos de gestión de la innovación como base de conocimiento para la educación e investigación l Es importante señalar, que este documento está sujeto a actualización en la medida que se vayan realizando distintas versiones del software.', ''),
+(6, NULL, 'Prueba', 0, 0000, 0, 0000, 'Funcione', 'SQL Condiciones.pdf'),
+(7, NULL, 'Ley', 0, 0000, 0, 0000, 'Información', 'LIEG_abro.pdf');
 
 -- --------------------------------------------------------
 
@@ -323,7 +324,7 @@ ALTER TABLE `articulos_autores`
 -- AUTO_INCREMENT de la tabla `autores`
 --
 ALTER TABLE `autores`
-  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`

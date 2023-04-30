@@ -8,8 +8,9 @@ $name = $_POST['name'];
 $lastname = $_POST['lastname'];
 $descripcion = $_POST['descripcion'];
 $img_autores = $_FILES['img_autor']['name'];
+$miembro = $_POST['miembro'];
 
-$sql = "INSERT INTO autores VALUES('$id_autor','$name','$lastname','$descripcion','$img_autores')";
+$sql = "INSERT INTO autores VALUES('$id_autor','$name','$lastname','$descripcion','$img_autores', '$miembro')";
 $query = mysqli_query($con, $sql);
 
 //Esta funcion carga la imagen que el usuario suba al CRUD y la mueve a la carpeta del proyecto del sitio web.

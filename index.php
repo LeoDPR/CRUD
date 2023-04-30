@@ -44,6 +44,11 @@ $query = mysqli_query($con, $sql);
                     <textarea type="text" name="descripcion" placeholder="Descripcion" class="form__autor"></textarea>
                     <label for="imagen" class="form__autor">Imagen:</label>
                     <input type="file" name="img_autor" class="form__autor">
+                    <label for="miembro">¿Es miembro?</label>
+                    <select name="miembro">
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
                     <input type="submit" value="Agregar" class="form__autor">
                 </form>
             </div>
@@ -56,6 +61,7 @@ $query = mysqli_query($con, $sql);
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Descripcion</th>
+                            <th>Miembro</th>
                             <th>Imagen</th>
                             <th></th>
                             <th></th>
@@ -75,6 +81,9 @@ $query = mysqli_query($con, $sql);
                                 </td>
                                 <td>
                                     <?= $row['descripcion'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['miembro'] ?>
                                 </td>
                                 <td>
                                     <img class="autor-img"

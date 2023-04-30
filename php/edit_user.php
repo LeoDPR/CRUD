@@ -10,8 +10,9 @@ $name = $_POST['name'];
 $lastname = $_POST['lastname'];
 $descripcion = $_POST['descripcion'];
 $img_autor_name = $_FILES['img_autor']['name'];
+$miembro = $_POST['miembro'];
 
-$sql = "UPDATE autores SET nombre='$name', apellido='$lastname', descripcion='$descripcion', imagen_autor='$img_autor_name' WHERE id_autor='$id_autor'";
+$sql = "UPDATE autores SET nombre='$name', apellido='$lastname', descripcion='$descripcion', imagen_autor='$img_autor_name', miembro='$miembro' WHERE id_autor='$id_autor'";
 $query = mysqli_query($con, $sql);
 
 //Esta funcion carga la imagen que el usuario suba al CRUD y la mueve a la carpeta del proyecto del sitio web.

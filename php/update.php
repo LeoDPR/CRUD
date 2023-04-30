@@ -27,7 +27,11 @@
                 <input type="text" name="lastname" placeholder="Apellidos" value="<?= $row['apellido']?>">
                 <input type="text" name="descripcion" placeholder="descripcion" value="<?= $row['descripcion']?>">
                 <input type="file" name="img_autor" placeholder="img_autor" value="<?= $row['imagen_autor']?>">
-
+                <label for="miembro">¿Es miembro?</label>
+                <select name="miembro" value="<?= $row['miembro']?>">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                </select>
                 <input type="submit" value="Actualizar">
             </form>
         </div>
