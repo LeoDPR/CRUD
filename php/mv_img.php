@@ -1,13 +1,11 @@
 <?php
 
-function move_img_file_autor()
+function move_img_file_autor($nombreArchivo)
 {
     if (isset($_FILES['img_autor']) && $_FILES['img_autor']['error'] == UPLOAD_ERR_OK) {
-        
-        
-        $rutaArchivo = 'C:\\xampp\\htdocs\\SSP-PROJECT\\images\\miembros\\' . $_POST['lastname'] . "_IMAGEN." . pathinfo($_FILES['img_autor']['name'], PATHINFO_EXTENSION);
+
+        $rutaArchivo = 'C:\\xampp\\htdocs\\SSP-PROJECT\\images\\miembros\\' . $nombreArchivo;
         if (move_uploaded_file($_FILES['img_autor']['tmp_name'], $rutaArchivo)) {
-            echo 'El archivo se ha subido correctamente';
             return true;
         } else {
             switch ($_FILES['img_autor']['error']) {
@@ -38,15 +36,15 @@ function move_img_file_autor()
             }
             return false;
         }
-
+        return false;
     }
 }
 
-function move_img_file_book()
+function move_img_file_book($nombreArchivo)
 {
     if (isset($_FILES['imagen_libro']) && $_FILES['imagen_libro']['error'] == UPLOAD_ERR_OK) {
-        
-        $rutaArchivo = 'C:\\xampp\\htdocs\\SSP-PROJECT\\images\\trabajos\\libros\\' . $_POST['titulo_libro'] . "_IMAGEN." . pathinfo($_FILES['imagen_libro']['name'], PATHINFO_EXTENSION);
+
+        $rutaArchivo = 'C:\\xampp\\htdocs\\SSP-PROJECT\\trabajos\\libros\\images\\' . $nombreArchivo;
         if (move_uploaded_file($_FILES['imagen_libro']['tmp_name'], $rutaArchivo)) {
             return true;
         } else {
@@ -84,11 +82,11 @@ function move_img_file_book()
     }
 }
 
-function move_img_file_article()
+function move_img_file_article($nombreArchivo)
 {
     if (isset($_FILES['imagen_articulo']) && $_FILES['imagen_articulo']['error'] == UPLOAD_ERR_OK) {
-        
-        $rutaArchivo = '..\\SSP-PROJECT\\trabajos\\articulos\\images\\' . $_POST['titulo_articulo'] . "_IMAGEN." . pathinfo($_FILES['imagen_articulo']['name'], PATHINFO_EXTENSION);
+
+        $rutaArchivo = 'C:\\xampp\\htdocs\\SSP-PROJECT\\trabajos\\articulos\\images\\' . $nombreArchivo;
         if (move_uploaded_file($_FILES['imagen_articulo']['tmp_name'], $rutaArchivo)) {
             return true;
         } else {
@@ -129,7 +127,7 @@ function move_img_file_article()
 function move_img_file_event($nombreArchivo)
 {
     if (isset($_FILES['imagen_evento']) && $_FILES['imagen_evento']['error'] == UPLOAD_ERR_OK) {
-        
+
         $rutaArchivo = 'C:\\xampp\\htdocs\\SSP-PROJECT\\images\\eventos\\' . $nombreArchivo;
         if (move_uploaded_file($_FILES['imagen_evento']['tmp_name'], $rutaArchivo)) {
             return true;

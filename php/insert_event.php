@@ -14,7 +14,17 @@ $lugar = $_POST['lugar_evento'];
 $fecha_inicio = $_POST['fecha_inicio_evento'];
 $fecha_final = $_POST['fecha_fin_evento'];
 $nombreArchivo = $_POST['titulo_evento'] . "." . pathinfo($_FILES['imagen_evento']['name'], PATHINFO_EXTENSION);
-$resultado = move_img_file_event($nombreArchivo);
+$resultado = false;
+
+
+
+if (isset ($_FILES['imagen_evento']) && $_FILES['imagen_evento']['error'] === UPLOAD_ERR_OK) {
+    $resultado = move_img_file_article($nombreArchivo);
+}else{
+    $resultado = true;
+    $nombreArchivo = "EventDefault.jpeg";
+}
+
 
 //Comienza el proceso de insersion en la tabla eventos
 $sql = "INSERT INTO eventos (nombre, descripcion, lugar, fecha_inicio, fecha_final, imagen_evento)
@@ -48,7 +58,7 @@ do {
     $i++;
 } while (isset($_POST['autor' . $i]));
 
-//Una funcion carga la imagen que el usuario suba al CRUD y la mueve a la carpeta del proyecto del sitio web.
+
 
 
 /* Verifica que no haya errores y redirecciona al index */

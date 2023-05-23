@@ -52,7 +52,7 @@ do {
 } while (isset($_POST['autor' . $i]));
 //Comienza a insertar los autores asociados
 $i = 0;
-do {
+while (isset($_POST['asociado' . $i])) {
     if($i==0){
         $id_autor = $_POST['asociado'];
     }else{
@@ -68,7 +68,7 @@ do {
         echo "Se insertaron en investigaciones_autores\n";
     }
     $i++;
-} while (isset($_POST['asociado' . $i]));
+}
 
 
 /* Verifica que no haya errores y redirecciona al index */

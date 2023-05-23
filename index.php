@@ -46,8 +46,8 @@ $query = mysqli_query($con, $sql);
                     <input type="file" name="img_autor" class="form__autor">
                     <label for="miembro">¿Es miembro?</label>
                     <select name="miembro">
-                        <option value="Si">Si</option>
-                        <option value="No">No</option>
+                        <option value="1">Si</option>
+                        <option selected value="0">No</option>
                     </select>
                     <input type="submit" value="Agregar" class="form__autor">
                 </form>
@@ -130,7 +130,7 @@ $query = mysqli_query($con, $sql);
                 <input type="date" name="fecha_publicacion_articulo" id="input-publication-date-articulo"
                     class="form__articulos">
 
-                <input type="url" name="url_descarga_articulo" id="input-download-url-articulo"
+                <input type="text" name="url_descarga_articulo" id="input-download-url-articulo"
                     placeholder="URL de descarga del articulo" class="form__articulos">
 
                 <label for="imagen" class="form__articulos">Imagen:</label>

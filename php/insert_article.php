@@ -13,12 +13,24 @@ $descripcion = $_POST['descripcion_articulo'];
 $categoria = $_POST['categoria_articulo'];
 $fecha_publicacion = $_POST['fecha_publicacion_articulo'];
 $url_descarga = $_POST['url_descarga_articulo'];
-$img_autor_name = $_FILES['imagen_articulo']['name'];
+$nombreArchivo = $_POST['titulo_articulo']. "." . pathinfo($_FILES['imagen_articulo']['name'], PATHINFO_EXTENSION);
 $issn = $_POST['issn'];
 $fuente = $_POST['fuente-name'];
 $indizado = false;
 $arbitrado = false;
+$resultado = false;
 
+//Una funcion carga la imagen que el usuario suba al CRUD y la mueve a la carpeta del proyecto del sitio web.
+
+
+if (isset ($_FILES['imagen_articulo']) && $_FILES['imagen_articulo']['error'] === UPLOAD_ERR_OK) {
+    $resultado = move_img_file_article($nombreArchivo);
+}else{
+    $resultado = true;
+    $nombreArchivo = "ArticleDefault.jpg";
+}
+
+echo $resultado;
 if ($_POST['select_indizado'] == 1){
     $indizado = true;
 }
@@ -29,7 +41,7 @@ if ($_POST['select_arbitrado'] == 1){
 
 //Comienza el proceso de insersion en la tabla libros
 $sql = "INSERT INTO articulos (nombre, descripcion, categoria, fecha_publicacion, url_descarga, imagen, fuente_publicacion, issn, indizado, arbitrado)
- VALUES('$titulo','$descripcion','$categoria','$fecha_publicacion', '$url_descarga', '$img_autor_name', '$fuente', '$issn', '$indizado', '$arbitrado')";
+ VALUES('$titulo','$descripcion','$categoria','$fecha_publicacion', '$url_descarga', '$nombreArchivo', '$fuente', '$issn', '$indizado', '$arbitrado')";
 $query = mysqli_query($con, $sql);
 if (!$query) {
     $validar_insert = false;
@@ -44,6 +56,7 @@ $i = 0;
 do {
     if ($i == 0) {
         $id_autor = $_POST['autor'];
+        
     } else {
         $id_autor = $_POST['autor' . $i];
     }
@@ -59,8 +72,6 @@ do {
     $i++;
 } while (isset($_POST['autor' . $i]));
 
-//Una funcion carga la imagen que el usuario suba al CRUD y la mueve a la carpeta del proyecto del sitio web.
-$resultado = move_img_file_article();
 
 /* Verifica que no haya errores y redirecciona al index */
 if ($validar_insert && $resultado) {
