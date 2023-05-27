@@ -221,7 +221,7 @@ $query = mysqli_query($con, $sql);
                 <label for="fecha_publicacion" class="form__libros">Fecha de Publicación:</label>
                 <input type="date" name="fecha_publicacion_libro" id="publication-date" class="form__libros">
 
-                <input type="url" name="url_descarga_libro" id="download-url" placeholder="URL de descarga del libro"
+                <input type="text" name="url_descarga_libro" id="download-url" placeholder="URL de descarga del libro"
                     class="form__libros">
 
                 <label for="imagen_libro" class="form__libros">Imagen:</label>
@@ -288,7 +288,7 @@ $query = mysqli_query($con, $sql);
                     <option value="2">2</option>
                 </select>
 
-                <input type="url" name="url_descarga_investigacion" id="download-url" placeholder="URL de Investigacion"
+                <input type="text" name="url_descarga_investigacion" id="download-url" placeholder="URL de Investigacion"
                     class="form__investigaciones">
 
 

@@ -21,10 +21,10 @@ $url_descarga = $_POST['url_descarga_investigacion'];
 $sql = "INSERT INTO investigaciones (clave, titulo, periodo_inicio, anio_inicio, periodo_fin, anio_fin, descripcion, url_descarga)
  VALUES('$clave','$titulo','$p_inicio', '$anio_inicio', '$p_final', '$anio_final','$descripcion', '$url_descarga')";
 $query = mysqli_query($con, $sql);
-if(!$query){
+if (!$query) {
     $validar_insert = false;
     die("Error en insersion investigaciones: " . mysqli_error($con));
-}else{
+} else {
     echo "Se insertaron en investigaciones \n";
 }
 
@@ -34,49 +34,50 @@ $last_id = mysqli_insert_id($con);
 //Comienza a insertar el autor principal
 $i = 0;
 do {
-    if($i==0){
+    if ($i == 0) {
         $id_autor = $_POST['autor'];
-    }else{
-        $id_autor = $_POST['autor' . $i]; 
+    } else {
+        $id_autor = $_POST['autor' . $i];
     }
     $sql2 = "INSERT INTO investigaciones_autores (id_investigacion, id_autor, asociado)
             VALUES ('$last_id', '$id_autor', 0)";
     $query2 = mysqli_query($con, $sql2);
-    if(!$query2){
+    if (!$query2) {
         $validar_insert = false;
         die("Error en la insersion investigaciones_autores $i: " . mysqli_error($con));
-    }else {
+    } else {
         echo "Se insertaron en investigaciones_autores\n";
     }
     $i++;
 } while (isset($_POST['autor' . $i]));
 //Comienza a insertar los autores asociados
 $i = 0;
-while (isset($_POST['asociado' . $i])) {
-    if($i==0){
-        $id_autor = $_POST['asociado'];
-    }else{
-        $id_autor = $_POST['asociado' . $i]; 
-    }
-    $sql2 = "INSERT INTO investigaciones_autores (id_investigacion, id_autor, asociado)
+if (isset($_POST['asociado'])) {
+    do {
+        if ($i == 0) {
+            $id_autor = $_POST['asociado'];
+        } else {
+            $id_autor = $_POST['asociado' . $i];
+        }
+        $sql2 = "INSERT INTO investigaciones_autores (id_investigacion, id_autor, asociado)
             VALUES ('$last_id', '$id_autor', 1)";
-    $query2 = mysqli_query($con, $sql2);
-    if(!$query2){
-        $validar_insert = false;
-        die("Error en la insersion investigaciones_autores $i: " . mysqli_error($con));
-    }else {
-        echo "Se insertaron en investigaciones_autores\n";
-    }
-    $i++;
+        $query2 = mysqli_query($con, $sql2);
+        if (!$query2) {
+            $validar_insert = false;
+            die("Error en la insersion investigaciones_autores $i: " . mysqli_error($con));
+        } else {
+            echo "Se insertaron en investigaciones_autores\n";
+        }
+        $i++;
+    } while (isset($_POST['asociado' . $i]));
 }
 
-
 /* Verifica que no haya errores y redirecciona al index */
-if($validar_insert){
+if ($validar_insert) {
     mysqli_commit($con);
     mysqli_close($con);
     Header("Location: ../index.php");
-}else{
+} else {
     mysqli_rollback($con);
     echo "Ocurrió un error durante la transacción. Las inserciones se deshicieron.";
 }

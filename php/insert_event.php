@@ -18,11 +18,13 @@ $resultado = false;
 
 
 
-if (isset ($_FILES['imagen_evento']) && $_FILES['imagen_evento']['error'] === UPLOAD_ERR_OK) {
-    $resultado = move_img_file_article($nombreArchivo);
+if (isset($_FILES['imagen_evento']) && $_FILES['imagen_evento']['error'] == UPLOAD_ERR_OK) {
+    $resultado = move_img_file_event($nombreArchivo);
+    
 }else{
     $resultado = true;
     $nombreArchivo = "EventDefault.jpeg";
+    echo "No se cargo la imagen a la carpeta";
 }
 
 

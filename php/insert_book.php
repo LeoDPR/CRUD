@@ -21,7 +21,7 @@ $resultado = false;
 //Una funcion carga la imagen que el usuario suba al CRUD y la mueve a la carpeta del proyecto del sitio web.
 
 if (isset ($_FILES['imagen_libro']) && $_FILES['imagen_libro']['error'] === UPLOAD_ERR_OK) {
-    $resultado = move_img_file_article($nombreArchivo);
+    $resultado = move_img_file_book($nombreArchivo);
 }else{
     $resultado = true;
     $nombreArchivo = "BookDefault.jpeg";

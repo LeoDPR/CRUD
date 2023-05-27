@@ -120,7 +120,7 @@ function move_img_file_article($nombreArchivo)
         }
     } else {
         echo 'No se ha seleccionado ningún archivo';
-        return true;
+        return false;
     }
 }
 
@@ -162,7 +162,7 @@ function move_img_file_event($nombreArchivo)
         }
     } else {
         echo 'No se ha seleccionado ningún archivo';
-        return true;
+        return false;
     }
 }
 
